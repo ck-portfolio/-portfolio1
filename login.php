@@ -39,16 +39,6 @@ if (isset($_POST["login"])) {
 
             foreach($stmt as $row){
 
-
-
-
-                //$row  = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-
-                //if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
-
                     if (password_verify($password, $row['password'])) {
                         session_regenerate_id(true);
 
@@ -65,23 +55,12 @@ if (isset($_POST["login"])) {
                     } else {
                         // 認証失敗
                         $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
-                    }
-                
-                /*
-                } else {
-                    // 4. 認証成功なら、セッションIDを新規に発行する
-                    // 該当データなし
-                    $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
-
-                    //var_dump($row['password']);
-                */
-                    
-
+                    }               
                 }
         } catch (PDOException $e) {
             $errorMessage = 'データベースエラー';
             //$errorMessage = $sql;
-            // $e->getMessage() でエラー内容を参照可能（デバッグ時のみ表示）
+            // $e->getMessage() （デバッグ用）
             // echo $e->getMessage();
         }
     }
